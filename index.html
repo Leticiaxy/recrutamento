@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Caça-Fantasmas – Convocação</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{--bg:#f1eefb;--card:#fff;--tx:#1d1533;--mut:#5d5478;--ac:#6d28d9;--bd:#d9d2ef;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c0a16;--card:#17132a;--tx:#ece8ff;--mut:#a79fca;--ac:#a78bfa;--bd:#2c2550}}
+:root[data-theme="dark"]{--bg:#0c0a16;--card:#17132a;--tx:#ece8ff;--mut:#a79fca;--ac:#a78bfa;--bd:#2c2550}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
+.hide{display:none!important}
+/* ---- visitante: sempre sombrio e decorado ---- */
+.stage{position:relative;overflow:hidden;min-height:100vh;min-height:100dvh;padding:28px 20px 40px;color:#ece8ff;text-align:center;background:radial-gradient(ellipse at 50% 0%,#3b1d7a 0%,#1a0f35 45%,#08060f 100%)}
+.wrap{position:relative;z-index:2;max-width:520px;margin:0 auto}
+.fl{position:absolute;z-index:1;opacity:.28;font-size:2.4rem;animation:fl 7s ease-in-out infinite}
+@keyframes fl{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-22px) rotate(6deg)}}
+@media (prefers-reduced-motion:reduce){.fl,.pulse{animation:none!important}}
+.big-ghost{font-size:4.5rem;filter:drop-shadow(0 0 18px #5eead4)}
+.stage h1{font-size:2rem;line-height:1.15;margin:.2em 0;letter-spacing:.04em;color:#5eead4;text-shadow:0 0 14px #5eead4aa}
+.stage h2{font-size:1.1rem;color:#c4b5fd;margin:.2em 0}
+.panel{background:#ffffff12;border:1px solid #a78bfa55;border-radius:18px;padding:18px;margin:16px 0;backdrop-filter:blur(4px)}
+.stage p{margin:.6em 0}
+.code{font-family:ui-monospace,Menlo,monospace;font-size:2.6rem;font-weight:800;letter-spacing:.1em;color:#5eead4;border:2px dashed #5eead4;border-radius:14px;padding:14px 8px;margin:12px 0;text-shadow:0 0 14px #5eead4aa}
+.timer{font-family:ui-monospace,Menlo,monospace;font-size:3.2rem;font-weight:700;color:#fde68a;text-shadow:0 0 14px #fbbf2499}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:16px;font:inherit;font-size:1.2rem;font-weight:800;cursor:pointer;color:#08060f;background:linear-gradient(90deg,#5eead4,#a78bfa);box-shadow:0 0 22px #5eead466}
+.btn.pulse{animation:pu 1.8s ease-in-out infinite}
+@keyframes pu{50%{box-shadow:0 0 38px #5eead4cc}}
+.btn.alt{background:#ffffff22;color:#ece8ff;box-shadow:none;font-size:1rem;padding:12px;margin-top:10px}
+.small{font-size:.85rem;color:#a79fca}
+/* ---- equipe ---- */
+.admin{max-width:760px;margin:0 auto;padding:20px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:20px;margin:16px 0}
+.card h2{margin:.2em 0 .4em;font-size:1.1rem}
+.mut{color:var(--mut);font-size:.9rem}
+input{width:100%;background:var(--bg);color:var(--tx);border:1px solid var(--bd);border-radius:10px;padding:10px;font:inherit}
+.abtn{background:var(--ac);color:var(--bg);border:0;border-radius:10px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer;margin:8px 8px 0 0}
+.qrs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.qrc{text-align:center;background:#fff;color:#111;border-radius:12px;padding:14px;border:1px solid var(--bd)}
+.qrc .q{display:flex;justify-content:center;margin:8px 0}
+</style>
+</head>
+<body>
+
+<!-- ========== TELA DO VISITANTE ========== -->
+<main id="player" class="stage">
+  <span class="fl" style="left:6%;top:6%">👻</span><span class="fl" style="right:8%;top:16%;animation-delay:-2s">🕸️</span>
+  <span class="fl" style="left:10%;top:48%;animation-delay:-4s">🦇</span><span class="fl" style="right:6%;top:62%;animation-delay:-1s">👻</span>
+  <span class="fl" style="left:14%;bottom:6%;animation-delay:-3s">🕯️</span><span class="fl" style="right:14%;bottom:4%;animation-delay:-5s">🔦</span>
+  <div class="wrap">
+
+    <!-- 1. convite -->
+    <section id="v-intro">
+      <div class="big-ghost">👻</div>
+      <h1>VOCÊS FORAM RECRUTADOS!</h1>
+      <h2>Agência de Investigação Paranormal</h2>
+      <div class="panel">
+        <p>Atividade <b>paranormal</b> detectada! Fantasmas estão à solta pelas estações e só uma equipe de <b>caça-fantasmas</b> corajosa pode capturá-los.</p>
+        <p>Ao aceitar a missão, vocês recebem o <b>código secreto</b> da equipe e o <b>cronômetro</b> começa a correr. Quanto tempo vocês levarão para capturar todos?</p>
+      </div>
+      <button class="btn pulse" id="accept">🔦 ACEITAR A MISSÃO</button>
+    </section>
+
+    <!-- 2. missão em andamento -->
+    <section id="v-run" class="hide">
+      <div class="big-ghost">🕵️</div>
+      <h1>MISSÃO INICIADA!</h1>
+      <div class="panel">
+        <h2>Código secreto da equipe</h2>
+        <div class="code" id="code">—</div>
+        <p><b>Guardem este código!</b> Vocês vão precisar dele nas próximas estações.</p>
+      </div>
+      <div class="panel">
+        <h2>⏱️ Tempo de missão</h2>
+        <div class="timer" id="timer">00:00</div>
+        <p class="small">O tempo só para quando vocês escanearem o QR Code de chegada, na última estação.</p>
+      </div>
+      <p>Sigam para a próxima estação, caça-fantasmas! 👻</p>
+      <button class="btn alt" id="finish">🏁 Terminei todas as estações</button>
+    </section>
+
+    <!-- 3. missão concluída -->
+    <section id="v-done" class="hide">
+      <div class="big-ghost">🏆</div>
+      <h1>MISSÃO CUMPRIDA!</h1>
+      <h2>Os fantasmas foram capturados</h2>
+      <div class="panel">
+        <h2>Tempo total da equipe</h2>
+        <div class="timer" id="final">00:00</div>
+        <div class="code" id="code2" style="font-size:1.8rem">—</div>
+        <p>Mostrem esta tela para a equipe organizadora e comparem o tempo com os outros grupos!</p>
+      </div>
+    </section>
+
+    <!-- aviso: escaneou o QR de chegada sem ter começado -->
+    <section id="v-nostart" class="hide">
+      <div class="big-ghost">🤔</div>
+      <h1>Calma, recruta!</h1>
+      <div class="panel"><p>Este celular ainda não aceitou a missão. Escaneiem o QR Code da entrada da sala para começar.</p></div>
+    </section>
+
+  </div>
+</main>
+
+<!-- ========== PAINEL DA EQUIPE (#equipe) ========== -->
+<section id="admin" class="admin hide">
+  <h1>👻 Painel da Equipe – Caça-Fantasmas</h1>
+  <div class="card">
+    <h2>1. Link público desta página</h2>
+    <p class="mut">Clique em Compartilhar no artefato, deixe o link acessível e cole aqui (sem o final #equipe).</p>
+    <input id="base" placeholder="https://...">
+    <button class="abtn" id="gen">Gerar QR Codes</button>
+    <button class="abtn" id="reset" style="background:var(--mut)">Zerar este celular (teste)</button>
+  </div>
+  <div class="qrs">
+    <div class="qrc"><b>QR DE ENTRADA</b><div class="q" id="qr-in"></div><span>Mostrem na entrada da sala. Cada celular recebe um código diferente.</span></div>
+    <div class="qrc"><b>QR DE CHEGADA</b><div class="q" id="qr-out"></div><span>Fica na última estação e para o cronômetro do grupo.</span></div>
+  </div>
+  <div class="card">
+    <h2>Como explicar para os avaliadores</h2>
+    <p><b>O que fizemos:</b> uma página web temática de caça-fantasmas. O QR de entrada recruta o grupo, entrega um código secreto único e liga o cronômetro. O QR de chegada para o tempo e mostra o resultado.</p>
+    <p><b>O que usamos:</b> HTML (estrutura), CSS (visual e animações), JavaScript (lógica) e a biblioteca QRCode.js.</p>
+    <p><b>Como funciona:</b> ao aceitar a missão, o JavaScript sorteia um código (palavra + número) e guarda o código e o horário de início na memória do celular. O QR de chegada abre a mesma página com <code>#fim</code> no endereço, e o programa calcula o tempo total.</p>
+    <p><b>Ligação com o curso:</b> Desenvolvimento de Sistemas envolve lógica de programação, front-end, uso de bibliotecas, armazenamento de dados e experiência do usuário.</p>
+  </div>
+</section>
+
+<script>
+var $=function(i){return document.getElementById(i)};
+var KEY="ghost-mission",mem=null,tid=null;
+var WORDS=["ECTO","ALFA","BETA","GAMA","DELTA","OMEGA","SIGMA","ORBE","ALMA","NEBULA","SOMBRA","ESPECTRO","RAIO","LANTERNA","NEVOA","FANTASMA"];
+function getSt(){try{var v=localStorage.getItem(KEY);if(v)return JSON.parse(v)}catch(e){}return mem}
+function setSt(s){mem=s;try{if(s)localStorage.setItem(KEY,JSON.stringify(s));else localStorage.removeItem(KEY)}catch(e){}}
+function p2(n){return (n<10?"0":"")+n}
+function fmt(ms){var d=Math.max(0,Math.floor(ms/1000)),h=Math.floor(d/3600),m=Math.floor(d%3600/60),s=d%60;return (h?h+":":"")+p2(m)+":"+p2(s)}
+function newCode(){return WORDS[Math.floor(Math.random()*WORDS.length)]+"-"+(10+Math.floor(Math.random()*90))}
+function show(id){["v-intro","v-run","v-done","v-nostart"].forEach(function(x){$(x).classList.toggle("hide",x!==id)})}
+
+function renderPlayer(){
+  if(tid){clearInterval(tid);tid=null}
+  var st=getSt(),h=(location.hash||"").slice(1).toLowerCase();
+  if(h==="fim"){
+    if(!st||!st.start){show("v-nostart");return}
+    if(!st.end){st.end=Date.now();setSt(st)}
+  }
+  if(!st||!st.start){show("v-intro");return}
+  if(st.end){show("v-done");$("final").textContent=fmt(st.end-st.start);$("code2").textContent=st.code;return}
+  show("v-run");$("code").textContent=st.code;
+  var t=function(){$("timer").textContent=fmt(Date.now()-st.start)};t();tid=setInterval(t,1000);
+}
+$("accept").onclick=function(){setSt({code:newCode(),start:Date.now()});renderPlayer()};
+var armed=false;
+$("finish").onclick=function(){
+  var b=$("finish");
+  if(!armed){armed=true;b.textContent="Tem certeza? Toque de novo para parar o tempo";setTimeout(function(){armed=false;b.textContent="🏁 Terminei todas as estações"},4000);return}
+  var st=getSt();if(st&&!st.end){st.end=Date.now();setSt(st)}renderPlayer();
+};
+
+function mkQR(el,text){el.innerHTML="";try{new QRCode(el,{text:text,width:200,height:200,correctLevel:QRCode.CorrectLevel.L})}catch(e){el.textContent="Erro ao gerar"}}
+function genQR(){var b=$("base").value.trim().split("#")[0];if(!b){return}mkQR($("qr-in"),b);mkQR($("qr-out"),b+"#fim")}
+$("gen").onclick=genQR;
+$("reset").onclick=function(){setSt(null);$("reset").textContent="Zerado ✔"};
+
+function route(){
+  var h=(location.hash||"").slice(1).toLowerCase();
+  if(h==="equipe"){
+    $("admin").classList.remove("hide");$("player").classList.add("hide");
+    if(!$("base").value)$("base").value=location.href.split("#")[0];
+    genQR();
+  }else{
+    $("admin").classList.add("hide");$("player").classList.remove("hide");renderPlayer();
+  }
+}
+window.addEventListener("hashchange",route);
+route();
+</script>
+</body>
+</html>
